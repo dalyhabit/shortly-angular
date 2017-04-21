@@ -51,14 +51,14 @@ describe('Services', function () {
 
       $httpBackend
         .expect('POST', '/api/links', JSON.stringify(github))
-        .respond(201, {
+        .respond(200, {
           url: 'https://github.com/reactorcore',
           title: 'reactorcore'
         });
 
       Links.addOne(github).then(function (resp) {
         expect(resp.status).to.equal(201);
-        expect(resp.data.title).to.equal('Hack Reactor Labs');
+        expect(resp.data.title).to.equal('reactorcore');
       });
 
       $httpBackend.flush();
